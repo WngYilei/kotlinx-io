@@ -85,6 +85,7 @@ kotlin {
                     group("unix") {
                         group("linux")
                         group("androidNative")
+                        withOhosArm64()
                     }
                 }
 
@@ -92,6 +93,7 @@ kotlin {
                     group("apple")
                     group("mingw")
                     group("linux")
+                    withOhosArm64()
                 }
             }
             group("nodeFilesystemShared") {
@@ -149,4 +151,6 @@ private fun KotlinMultiplatformExtension.nativeTargets() {
     macosArm64()
 
     mingwX64()
+
+    ohosArm64()
 }

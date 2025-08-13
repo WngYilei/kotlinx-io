@@ -5,6 +5,7 @@ bin
 .gradle
 *.swp
 .project
+.DS_Store
 
 .kotlin
 

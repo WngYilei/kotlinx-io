@@ -10,6 +10,8 @@ pluginManagement {
         mavenCentral()
         google()
         gradlePluginPortal()
+        maven("https://mirrors.tencent.com/nexus/repository/maven-tencent")
+        maven("https://mirrors.tencent.com/nexus/repository/maven-public")
     }
 }
 

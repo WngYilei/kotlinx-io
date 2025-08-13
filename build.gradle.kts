@@ -18,6 +18,8 @@ allprojects {
     properties["DeployVersion"]?.let { version = it }
     repositories {
         mavenCentral()
+        maven("https://mirrors.tencent.com/nexus/repository/maven-tencent")
+        maven("https://mirrors.tencent.com/nexus/repository/maven-public")
     }
 }
 
@@ -25,7 +27,9 @@ allprojects {
 apiValidation {
     ignoredProjects.addAll(listOf(
         "kotlinx-io-benchmarks",
-        "kotlinx-io-smoke-tests"
+        "kotlinx-io-smoke-tests",
+        "kotlinx-io-core",
+        "kotlinx-io-bytestring",
     ))
     klib.enabled = true
 }
