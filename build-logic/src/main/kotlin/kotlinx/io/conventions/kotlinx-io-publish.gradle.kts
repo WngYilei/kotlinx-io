@@ -4,7 +4,6 @@
  */
 
 import org.gradle.jvm.tasks.Jar
-import java.net.URI
 
 plugins {
     `maven-publish`
@@ -69,21 +68,13 @@ fun MavenPublication.mavenCentralArtifacts(project: Project, sources: SourceDire
 }
 
 
-fun mavenRepositoryUri(): URI {
-    val repositoryId: String? = System.getenv("libs.repository.id")
-    return if (repositoryId == null) {
-        URI("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
-    } else {
-        URI("https://oss.sonatype.org/service/local/staging/deployByRepositoryId/$repositoryId")
-    }
-}
-
-fun RepositoryHandler.configureMavenPublication( project: Project) {
+fun RepositoryHandler.configureMavenPublication(project: Project) {
     maven {
-        url = mavenRepositoryUri()
+        url = uri(project.findProperty("MAVEN_REPOSITORY_URL") as String)
+        isAllowInsecureProtocol = true
         credentials {
-            username = project.getSensitiveProperty("libs.sonatype.user")
-            password = project.getSensitiveProperty("libs.sonatype.password")
+            username = project.findProperty("MAVEN_REPOSITORY_USERNAME") as String
+            password = project.findProperty("MAVEN_REPOSITORY_PASSWORD") as String
         }
     }
 
